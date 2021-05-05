@@ -1,0 +1,74 @@
+name: manage-azure-policy-786b3f5d
+on:
+  workflow_dispatch:
+    inputs:
+      remarks:
+        description: 'Reason for triggering the workflow run'
+        required: false
+        default: 'Updating Azure Policies'
+
+
+## Uncomment the following if you wish to automatically trigger workflow run with every commit
+#
+#  push:
+#    paths:
+#      - 'Security_Policy-Export/policies/_Preview_Deploy_-_Configure_Windows_machines_to_automatically_install_the_Azure_Security_agent_1537496a-b1e8-482b-a06a-1cc2415cdc7b/**'
+#      - 'Security_Policy-Export/policies/Deploy_default_Microsoft_IaaSAntimalware_extension_for_Windows_Server_2835b622-407b-4114-9198-6f7064cbe0dc/**'
+#      - 'Security_Policy-Export/policies/Deploy_Threat_Detection_on_SQL_servers_36d49e87-48c4-4f2e-beed-ba4ed02b71f5/**'
+#      - 'Security_Policy-Export/policies/Deploy_Advanced_Threat_Protection_on_Storage_Accounts_361c2074-3595-4e5d-8cab-4f21dffc835c/**'
+#      - 'Security_Policy-Export/policies/_Preview_Deploy_-_Configure_Linux_machines_to_automatically_install_the_Azure_Security_agent_5f8eb305-9c9f-4abe-9bb0-df220d9faba2/**'
+#      - 'Security_Policy-Export/policies/Deploy_Workflow_Automation_for_Azure_Security_Center_regulatory_compliance_509122b9-ddd9-47ba-a5f1-d0dac20be63c/**'
+#      - 'Security_Policy-Export/policies/Azure_Monitor_solution_Security_and_Audit_must_be_deployed_3e596b57-105f-48a6-be97-03e9243bad6e/**'
+#      - 'Security_Policy-Export/policies/Deploy_Workflow_Automation_for_Azure_Security_Center_recommendations_73d6ab6c-2475-4850-afd6-43795f3492ef/**'
+#      - 'Security_Policy-Export/policies/Deploy_Advanced_Data_Security_on_SQL_servers_6134c3db-786f-471e-87bc-8f479dc890f6/**'
+#      - 'Security_Policy-Export/policies/Deploy_Diagnostic_Settings_for_Logic_Apps_to_Log_Analytics_workspace_b889a06c-ec72-4b03-910a-cb169ee18721/**'
+#      - 'Security_Policy-Export/policies/Deploy_Advanced_Threat_Protection_for_Cosmos_DB_Accounts_b5f04e03-92a3-4b09-9410-2cc5e5047656/**'
+#      - 'Security_Policy-Export/policies/Deploy_network_watcher_when_virtual_networks_are_created_a9b99dd8-06c5-4317-8629-9d86a3c6e7d9/**'
+#      - 'Security_Policy-Export/policies/Deploy_Azure_Policy_Add-on_to_Azure_Kubernetes_Service_clusters_a8eff44f-8c92-45c3-a3fb-9880802d67a7/**'
+#      - 'Security_Policy-Export/policies/Deploy_Workflow_Automation_for_Azure_Security_Center_alerts_f1525828-9a90-4fcf-be48-268cdd02361e/**'
+#      - 'Security_Policy-Export/policies/_Preview_All_Internet_traffic_should_be_routed_via_your_deployed_Azure_Firewall_fc5e4038-4584-4632-8c85-c0448d374b2c/**'
+#      - 'Security_Policy-Export/policies/Deploy_export_to_Log_Analytics_workspace_for_Azure_Security_Center_data_ffb6f416-7bd2-4488-8828-56585fef2be9/**'
+#      - 'Security_Policy-Export/policies/Deploy_Diagnostic_Settings_for_Event_Hub_to_Event_Hub_ef7b61ef-b8e4-4c91-8e78-6946c6b0023f/**'
+#      - 'Security_Policy-Export/policies/Deploy_Diagnostic_Settings_for_Stream_Analytics_to_Event_Hub_edf3780c-3d70-40fe-b17e-ab72013dafca/**'
+#      - 'Security_Policy-Export/policies/Deploy_Diagnostic_Settings_for_Batch_Account_to_Event_Hub_db51110f-0865-4a6e-b274-e2e07a5b2cd7/**'
+#      - 'Security_Policy-Export/initiatives/ISO_27001_2013_89c6cddc-1c73-4ac1-b19c-54d1a15a42f2/**'
+#      - 'Security_Policy-Export/initiatives/Audit_machines_with_insecure_password_security_settings_095e4ed9-c835-4ab6-9439-b5644362a06c/**'
+#      - 'Security_Policy-Export/initiatives/Azure_Security_Benchmark_1f3afdf9-d0c9-4c3d-847f-89da613e70a8/**'
+#      - .github/workflows/manage-azure-policy-786b3f5d.yml
+jobs:
+  apply-azure-policy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS_786b3f5d}}
+        allow-no-subscriptions: true
+    - name: Create or Update Azure Policies
+      uses: azure/manage-azure-policy@v0
+      with:
+        paths: |
+          Security_Policy-Export/policies/_Preview_Deploy_-_Configure_Windows_machines_to_automatically_install_the_Azure_Security_agent_1537496a-b1e8-482b-a06a-1cc2415cdc7b/**
+          Security_Policy-Export/policies/Deploy_default_Microsoft_IaaSAntimalware_extension_for_Windows_Server_2835b622-407b-4114-9198-6f7064cbe0dc/**
+          Security_Policy-Export/policies/Deploy_Threat_Detection_on_SQL_servers_36d49e87-48c4-4f2e-beed-ba4ed02b71f5/**
+          Security_Policy-Export/policies/Deploy_Advanced_Threat_Protection_on_Storage_Accounts_361c2074-3595-4e5d-8cab-4f21dffc835c/**
+          Security_Policy-Export/policies/_Preview_Deploy_-_Configure_Linux_machines_to_automatically_install_the_Azure_Security_agent_5f8eb305-9c9f-4abe-9bb0-df220d9faba2/**
+          Security_Policy-Export/policies/Deploy_Workflow_Automation_for_Azure_Security_Center_regulatory_compliance_509122b9-ddd9-47ba-a5f1-d0dac20be63c/**
+          Security_Policy-Export/policies/Azure_Monitor_solution_Security_and_Audit_must_be_deployed_3e596b57-105f-48a6-be97-03e9243bad6e/**
+          Security_Policy-Export/policies/Deploy_Workflow_Automation_for_Azure_Security_Center_recommendations_73d6ab6c-2475-4850-afd6-43795f3492ef/**
+          Security_Policy-Export/policies/Deploy_Advanced_Data_Security_on_SQL_servers_6134c3db-786f-471e-87bc-8f479dc890f6/**
+          Security_Policy-Export/policies/Deploy_Diagnostic_Settings_for_Logic_Apps_to_Log_Analytics_workspace_b889a06c-ec72-4b03-910a-cb169ee18721/**
+          Security_Policy-Export/policies/Deploy_Advanced_Threat_Protection_for_Cosmos_DB_Accounts_b5f04e03-92a3-4b09-9410-2cc5e5047656/**
+          Security_Policy-Export/policies/Deploy_network_watcher_when_virtual_networks_are_created_a9b99dd8-06c5-4317-8629-9d86a3c6e7d9/**
+          Security_Policy-Export/policies/Deploy_Azure_Policy_Add-on_to_Azure_Kubernetes_Service_clusters_a8eff44f-8c92-45c3-a3fb-9880802d67a7/**
+          Security_Policy-Export/policies/Deploy_Workflow_Automation_for_Azure_Security_Center_alerts_f1525828-9a90-4fcf-be48-268cdd02361e/**
+          Security_Policy-Export/policies/_Preview_All_Internet_traffic_should_be_routed_via_your_deployed_Azure_Firewall_fc5e4038-4584-4632-8c85-c0448d374b2c/**
+          Security_Policy-Export/policies/Deploy_export_to_Log_Analytics_workspace_for_Azure_Security_Center_data_ffb6f416-7bd2-4488-8828-56585fef2be9/**
+          Security_Policy-Export/policies/Deploy_Diagnostic_Settings_for_Event_Hub_to_Event_Hub_ef7b61ef-b8e4-4c91-8e78-6946c6b0023f/**
+          Security_Policy-Export/policies/Deploy_Diagnostic_Settings_for_Stream_Analytics_to_Event_Hub_edf3780c-3d70-40fe-b17e-ab72013dafca/**
+          Security_Policy-Export/policies/Deploy_Diagnostic_Settings_for_Batch_Account_to_Event_Hub_db51110f-0865-4a6e-b274-e2e07a5b2cd7/**
+          Security_Policy-Export/initiatives/ISO_27001_2013_89c6cddc-1c73-4ac1-b19c-54d1a15a42f2/**
+          Security_Policy-Export/initiatives/Audit_machines_with_insecure_password_security_settings_095e4ed9-c835-4ab6-9439-b5644362a06c/**
+          Security_Policy-Export/initiatives/Azure_Security_Benchmark_1f3afdf9-d0c9-4c3d-847f-89da613e70a8/**
